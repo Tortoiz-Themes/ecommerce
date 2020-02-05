@@ -19,19 +19,23 @@ Vue.use(VueRouter)
 import {routes} from './routes';
 const router = new VueRouter({
     routes,
+    mode:'history'
 })
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
  *
- * Eg. ./components/HomeComponent.vue -> <example-component></example-component>
+ * Eg. ./components/AdminMaster.vue -> <example-component></example-component>
  */
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('home-component', require('./components/public/HomeComponent.vue').default);
+Vue.component('adminmaster', require('./components/backend/admin/AdminMaster').default);
+Vue.component('customermaster', require('./components/backend/customer/CustomerMaster').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

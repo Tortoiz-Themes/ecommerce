@@ -23,14 +23,16 @@ Auth::routes();
 Route::group(['as' => 'backend.','prefix'=>'backend','namespace'=>'Backend','middleware'=>'auth'],function (){
     /*** Route For Admin ***/
     Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin'], function (){
+        Route::get('/{route}','DashboardController@index')->where('route', '[\/\w\.-]*');
+
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         /** Category Route **/
-        Route::resource('/category', 'CategoryController');
+        //Route::resource('/category', 'CategoryController');
     });
     /*** Route For Customer ***/
     Route::group(['as'=>'customer.','prefix'=>'customer','namespace'=>'Customer','middleware'=>'customer'],
         function (){
-
+            Route::get('/{route}','DashboardController@index')->where('route', '[\/\w\.-]*');
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     });
 });
