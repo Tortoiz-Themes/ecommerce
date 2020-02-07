@@ -256,10 +256,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- Control Sidebar Toggle Button -->
-                        <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                        </li>
+
                     </ul>
                 </div>
             </nav>
@@ -270,6 +267,7 @@
 <script>
     export default {
         name: "HeaderComponent",
+
         methods : {
             logout(e){
 

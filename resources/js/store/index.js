@@ -4,14 +4,14 @@ const store = new Vuex.Store({
         count: 0
     },
     getters : {
-        getallCategory() {
+        getcount() {
             return this.state.count;
         }
     },
     actions: {
         increment(s)
         {
-            this.mutations.
+            this.commit('increment');
         }
     },
     mutations: {

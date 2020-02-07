@@ -3192,9 +3192,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderComponent",
   methods: {
@@ -40851,9 +40848,7 @@ var render = function() {
                   ])
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _vm._m(9)
+            ])
           ])
         ])
       ])
@@ -41356,16 +41351,6 @@ var staticRenderFns = [
         { staticClass: "btn btn-default btn-flat", attrs: { href: "#" } },
         [_vm._v("Profile")]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#", "data-toggle": "control-sidebar" } }, [
-        _c("i", { staticClass: "fa fa-gears" })
-      ])
     ])
   }
 ]
