@@ -251,7 +251,7 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" click="logout" class="btn btn-default btn-flat">Sign out</a>
+                                        <button v-on:click="logout" class="btn btn-default btn-flat">Sign out</button>
                                     </div>
                                 </li>
                             </ul>
@@ -272,9 +272,12 @@
         name: "HeaderComponent",
         methods : {
             logout(e){
-                e.preventDefault();
+
                 axios.post('/logout')
-                    .then(console.log('logout'))
+                    .then(
+                        console.log(e),
+                        window.location.reload(),
+                    )
             }
         }
     }
