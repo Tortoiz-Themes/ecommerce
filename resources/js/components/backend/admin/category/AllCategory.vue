@@ -8,7 +8,7 @@
                     Category List
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="/baackend/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><RouterLink :to="{name: 'adminhome'}"><i class="fa fa-dashboard"></i> Home</RouterLink></li>
                     <li class="active">Category List</li>
                 </ol>
             </section>
@@ -20,7 +20,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">All Category</h3>
-                        <RouterLink to=""><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add New</button></RouterLink>
+                        <RouterLink :to="{name: 'categorycreate'}"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add New</button></RouterLink>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -80,6 +80,7 @@
     export default {
         name: "AllCategory",
         mounted(){
+            //window.location.reload();
             this.$store.dispatch('allCategories')
         },
         computed :{

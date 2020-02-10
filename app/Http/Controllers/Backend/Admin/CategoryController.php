@@ -14,19 +14,15 @@ class CategoryController extends Controller
     // return all categories
     public function index()
     {
-        return Response::successResponse( Category::all() );
+        return Response::successResponse( Category::latest()->get() );
     }
     // create new category
     public function create(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'name' => 'required|unique:categories|max:255',
         ]);
-        //checking is validation failed or not
-        if ( $validator->fails() )
-        {
-            return Response::errorResponse( $validator->errors() );
-        }
+
         $category = new Category();
         $category->name = $request->get('name');
         $category->slug = Str::slug($request->get('name'));
@@ -65,7 +61,7 @@ class CategoryController extends Controller
         else
         {
             $category->delete();
-            return Response::successResponse(Category::all());
+            return Response::successResponse(Category::latest()->get());
         }
     }
 }

@@ -1,15 +1,15 @@
 <template>
-    <div id="edit_category">
+    <div id="new_category">
         <div class="content-wrapper" style="min-height: 946px;">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Category Edit Form
+                    Add New Category Form
                 </h1>
                 <ol class="breadcrumb">
                     <li><RouterLink :to="{name:'adminhome'}"><i class="fa fa-dashboard"></i> Home</RouterLink></li>
                     <li><RouterLink :to="{name:'categorylist'}">Category</RouterLink></li>
-                    <li class="active">Edit Category</li>
+                    <li class="active">Add Category</li>
                 </ol>
             </section>
 
@@ -21,11 +21,11 @@
                         <!-- general form elements -->
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Category Update</h3>
+                                <h3 class="box-title">New Category</h3>
                             </div>
                             <!-- /.box-header -->
                             <!-- form start -->
-                            <form role="form" @submit.prevent="cat_update" @keydown="form.onKeydown($event)">
+                            <form role="form" @submit.prevent="cat_insert" @keydown="form.onKeydown($event)">
                                 <div class="box-body">
                                     <div class="form-group">
                                         <label for="name">Category Name</label>
@@ -62,8 +62,7 @@
     Vue.component(HasError.name, HasError)
     Vue.component(AlertError.name, AlertError)
     export default {
-        name: "EditCategory",
-
+        name: "NewCategory",
         data() {
             return{
                 form: new Form({
@@ -71,19 +70,13 @@
                 })
             }
         },
-        mounted(){
-            axios.get(`/api/v1/categories/${this.$route.params.slug}`)
-                .then((res) =>{
-                    this.form.name = res.data.data.name
-                })
-        },
         methods:{
-            cat_update(){
-                this.form.put(`/api/v1/categories/${this.$route.params.slug}`)
+            cat_insert(){
+                this.form.post('/api/v1/categories')
                     .then(({ data }) => {
                             toast.fire({
                                 icon: 'success',
-                                title: 'Category Updated successfully'
+                                title: 'Category Inserted successfully'
                             })
                             this.$router.push({name: 'categorylist'})
                         }
