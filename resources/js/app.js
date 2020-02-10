@@ -11,16 +11,44 @@ window.Vue = require('vue');
 //vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)
+import storeData from './store/index';
+const store = new Vuex.Store(
+    storeData
+);
 
 // Vue router
 import VueRouter from 'vue-router';
 Vue.use(VueRouter)
-
 import {routes} from './routes';
 const router = new VueRouter({
     routes,
     mode:'history'
 })
+
+// sweet alert
+import Swal from 'sweetalert2'
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+});
+const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+});
+window.Swal = Swal;
+window.confirm_btn = swalWithBootstrapButtons;
+window.toast = Toast;
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -45,5 +73,6 @@ Vue.component('customermaster', require('./components/backend/customer/CustomerM
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store,
 });

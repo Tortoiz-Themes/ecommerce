@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class UsersTableSeeder extends Seeder
 {
@@ -17,14 +18,18 @@ class UsersTableSeeder extends Seeder
             'fname'     => 'Mr.',
             'lname'    => 'Admin',
             'email'     => 'admin@example.com',
-            'password'  => bcrypt('rootadmin')
+            'password'  => bcrypt('rootadmin'),
+            'created_at'    => Carbon::today(),
+            'updated_at'    => Carbon::today()
         ]);
         DB::table('users')->insert([
             'role_id'   => 2,
             'fname'     => 'Mr.',
             'lname'    => 'Customer',
             'email'     => 'customer@example.com',
-            'password'  => bcrypt('rootcustomer')
+            'password'  => bcrypt('rootcustomer'),
+            'created_at'    => Carbon::today(),
+            'updated_at'    => Carbon::today()
         ]);
     }
 }

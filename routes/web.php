@@ -26,8 +26,7 @@ Route::group(['as' => 'backend.','prefix'=>'backend','namespace'=>'Backend','mid
         Route::get('/{route}','DashboardController@index')->where('route', '[\/\w\.-]*');
 
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-        /** Category Route **/
-        //Route::resource('/category', 'CategoryController');
+
     });
     /*** Route For Customer ***/
     Route::group(['as'=>'customer.','prefix'=>'customer','namespace'=>'Customer','middleware'=>'customer'],
@@ -40,15 +39,32 @@ Route::group(['as' => 'backend.','prefix'=>'backend','namespace'=>'Backend','mid
 /******************************
  * Froent API Route Goes Here
  *****************************/
+/*
+ * API Standard
+ * message: ""
+ * data : {}
+ * status code
+ */
+
+
 Route::group(['prefix' => '/api/v1'],function (){
     /***** Authenticated Route *****/
-    Route::group(['middleware' => 'auth', 'namespace'=> 'Backend'], function (){
+    Route::group(['namespace'=> 'Backend'], function (){
         /***** Admin Route *****/
-        Route::group(['middleware'=>'admin', 'namespace'=>'Admin'], function (){
+        Route::group(['namespace'=>'Admin'], function (){
             Route::get('/users', function (){
                 return response()->json(\App\User::with('role')->get(), 200);
             });
-
+            // Category list
+            Route::get('/categories', 'CategoryController@index');
+            // Category create
+            Route::post('/categories', 'CategoryController@create');
+            // Category view
+            Route::get('/categories/{slug}', 'CategoryController@view');
+            // Category view
+            Route::put('/categories/{slug}', 'CategoryController@update');
+            // Category Delete
+            Route::delete('/categories/{slug}', 'CategoryController@delete');
         });
         /***** Customer Route *****/
         Route::group(['middleware'=>'customer', 'namespace'=>'Customer'], function (){
@@ -60,4 +76,5 @@ Route::group(['prefix' => '/api/v1'],function (){
         });
     });
     /***** Public Route *****/
+
 });

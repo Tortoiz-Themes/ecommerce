@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,11 +15,15 @@ class RolesTableSeeder extends Seeder
     {
         DB::table('roles')->insert([
             'name'  => 'Admin',
-            'slug'  => 'admin'
+            'slug'  => 'admin',
+            'created_at'    => Carbon::today(),
+            'updated_at'    => Carbon::today()
         ]);
         DB::table('roles')->insert([
             'name'  => 'Customer',
-            'slug'  => 'customer'
+            'slug'  => 'customer',
+            'created_at'    => Carbon::today(),
+            'updated_at'    => Carbon::today()
         ]);
     }
 }

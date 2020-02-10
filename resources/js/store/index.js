@@ -1,22 +1,24 @@
-import Vuex from 'vuex';
-const store = new Vuex.Store({
+
+export default {
     state: {
-        count: 0
+        categories : [],
     },
     getters : {
-        getcount() {
-            return this.state.count;
+        getAllCategories(state) {
+            return state.categories;
         }
     },
     actions: {
-        increment(s)
-        {
-            this.commit('increment');
+        allCategories(context){
+            axios.get('/api/v1/categories')
+                .then( response => {
+                    context.commit('allCategory', response.data.data);
+                })
         }
     },
     mutations: {
-        increment (state) {
-            state.count++
+        allCategory(state, data){
+            state.categories = data;
         }
     }
-})
+}

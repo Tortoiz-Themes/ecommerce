@@ -28,7 +28,7 @@
 
 
                     <li>
-                        <RouterLink to="/backend/admin/category">
+                        <RouterLink :to="{name:'categorylist'}">
                             <i class="fa fa-book"></i> <span>Category</span>
                         </RouterLink>
                     </li>
