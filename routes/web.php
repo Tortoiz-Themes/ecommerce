@@ -55,7 +55,7 @@ Route::group(['prefix' => '/api/v1'],function (){
             Route::get('/users', function (){
                 return response()->json(\App\User::with('role')->get(), 200);
             });
-            // Category list
+            /*** Category list ***/
             Route::get('/categories', 'CategoryController@index');
             // Category create
             Route::post('/categories', 'CategoryController@create');
@@ -65,6 +65,18 @@ Route::group(['prefix' => '/api/v1'],function (){
             Route::put('/categories/{slug}', 'CategoryController@update');
             // Category Delete
             Route::delete('/categories/{slug}', 'CategoryController@delete');
+
+            /**** Brands Routs ****/
+            // Brands list
+            Route::get('/brands', 'BrandController@index');
+            // Brands create
+            Route::post('/brands', 'BrandController@create');
+            // Brands view
+            Route::get('/brands/{slug}', 'BrandController@view');
+            // Brands view
+            Route::put('/brands/{slug}', 'BrandController@update');
+            // Brands Delete
+            Route::delete('/brands/{slug}', 'BrandController@delete');
         });
         /***** Customer Route *****/
         Route::group(['middleware'=>'customer', 'namespace'=>'Customer'], function (){

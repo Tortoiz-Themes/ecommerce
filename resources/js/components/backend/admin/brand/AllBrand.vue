@@ -1,15 +1,15 @@
 <template>
-    <div id="allcategory">
+    <div id="all_brand">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Category List
+                    Brand List
                 </h1>
                 <ol class="breadcrumb">
                     <li><RouterLink :to="{name: 'adminhome'}"><i class="fa fa-dashboard"></i> Home</RouterLink></li>
-                    <li class="active">Category List</li>
+                    <li class="active">Brand List</li>
                 </ol>
             </section>
 
@@ -19,8 +19,8 @@
                 <!-- Default box -->
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">All Category</h3>
-                        <RouterLink :to="{name: 'categorycreate'}"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add New</button></RouterLink>
+                        <h3 class="box-title">All Brand</h3>
+                        <RouterLink :to="{name: 'brandcreate'}"><button class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add New</button></RouterLink>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -28,21 +28,21 @@
                             <thead>
                             <tr>
                                 <th>SL.NO</th>
-                                <th>Category Name</th>
+                                <th>Brand Name</th>
                                 <th>Slug</th>
                                 <th>Created At</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(category,id) in categories" :key="id" role="row">
+                            <tr v-for="(brand,id) in brands" :key="id" role="row">
                                 <td v-text="id+1" class="shorting_1"></td>
-                                <td>{{ category.name }}</td>
-                                <td>{{ category.slug }}</td>
-                                <td>{{ category.created_at }}</td>
+                                <td>{{ brand.name }}</td>
+                                <td>{{ brand.slug }}</td>
+                                <td>{{ brand.created_at }}</td>
                                 <td>
-                                    <RouterLink :to="{ name: 'categoryupdate', params: { slug: `${category.slug}` }}" class="btn btn-primary">Edit</RouterLink>
-                                    <button v-on:click="delete_cat(`${category.slug}`)" class="btn btn-danger">Delete</button>
+                                    <RouterLink :to="{ name: 'brandupdate', params: { slug: `${brand.slug}` }}" class="btn btn-primary">Edit</RouterLink>
+                                    <button v-on:click="delete_brand(`${brand.slug}`)" class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                             <tr style="display:none">
@@ -57,7 +57,7 @@
                             <tfoot>
                             <tr>
                                 <th>SL.NO</th>
-                                <th>Category Name</th>
+                                <th>Brand Name</th>
                                 <th>Slug</th>
                                 <th>Created At</th>
                                 <th>Actions</th>
@@ -78,17 +78,17 @@
 
 <script>
     export default {
-        name: "AllCategory",
+        name: "AllBrand",
         mounted(){
-            this.$store.dispatch('allCategories')
+            this.$store.dispatch('allBrands')
         },
         computed :{
-            categories (){
-                return this.$store.getters.getAllCategories;
+            brands (){
+                return this.$store.getters.getAllBrands;
             }
         },
         methods:{
-            delete_cat(slug){
+            delete_brand(slug){
                 //console.log(slug);
                 confirm_btn.fire({
                     title: 'Are you sure?',
@@ -102,12 +102,12 @@
                     if (result.value) {
 
                         // delete category request
-                        axios.delete(`/api/v1/categories/${slug}`)
+                        axios.delete(`/api/v1/brands/${slug}`)
                             .then(( res ) => {
-                                this.$store.state.categories = res.data.data;
+                                this.$store.state.brands = res.data.data;
                                 confirm_btn.fire(
                                     'Deleted!',
-                                    'Category has been deleted.',
+                                    'Brand has been deleted.',
                                     'success'
                                 )
                             })

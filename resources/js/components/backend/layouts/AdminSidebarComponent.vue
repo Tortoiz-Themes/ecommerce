@@ -34,8 +34,8 @@
                     </li>
 
                     <li>
-                        <RouterLink to="/backend/admin/dashboard">
-                            <i class="fa fa-dashboard"></i> <span>Brand</span>
+                        <RouterLink :to="{name:'brandlist'}">
+                            <i class="fa fa-book"></i> <span>Brand</span>
                         </RouterLink>
                     </li>
 
